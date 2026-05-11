@@ -2,9 +2,14 @@
 
 Dokumen ini menjelaskan bagaimana proyek **TeknoAtlas** memenuhi kriteria **Tugas 1 Kelompok** mata kuliah Pemrograman Back-End.
 
-### 1. Halaman Utama & Navigasi
+### 1. Struktur Halaman & Navigasi
 - **Status**: [LULUS]
-- **Penjelasan**: Website memiliki halaman beranda yang menampilkan kartu (cards) negara, peta interaktif, daftar berita, dan tabel analisis. Navigasi sederhana tersedia di bagian atas halaman (Navbar).
+- **Penjelasan**: Website memiliki arsitektur multi-halaman yang rapi:
+    - **Halaman Beranda**: Menampilkan data negara dalam bentuk **Card** dinamis.
+    - **Halaman Peta**: Menampilkan **Peta Interaktif** hub inovasi.
+    - **Halaman Warta**: Menampilkan **Daftar Berita** (List) dari API internasional.
+    - **Halaman Analisis**: Menampilkan **Tabel Analisis** ekonomi makro.
+- **Navigasi**: Menggunakan Navbar yang konsisten di bagian atas setiap halaman untuk memudahkan pengguna berpindah fitur.
 
 ### 2. Pengambilan Data API (Library `requests`)
 - **Status**: [LULUS]
