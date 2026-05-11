@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisis Komparatif Global - TeknoAtlas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="container nav-content">
+            <a href="/" class="logo">Tekno<span>Atlas</span></a>
+            <div class="nav-links">
+                <a href="/">Beranda</a>
+                <a href="/map">Peta Inovasi</a>
+                <a href="/news">Warta Tekno</a>
+                <a href="/analysis">Analisis</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="section-header">
+            <h2>Analisis Komparatif Global</h2>
+            <p>Perbandingan indikator ekonomi makro dan skor inovasi antar hub teknologi utama dunia.</p>
+        </header>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Negara</th>
+                        <th>Total GDP (USD)</th>
+                        <th>Populasi</th>
+                        <th>R&D (% GDP)</th>
+                        <th>Inflasi (%)</th>
+                        <th>Prediksi (ML)</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in data %}
+                    <tr>
+                        <td><strong>{{ item.name }}</strong></td>
+                        <td>${{ "{:,.0f}".format(item.gdp / 1e9) if item.gdp else '0' }} Miliar</td>
+                        <td>{{ "{:,}".format(item.population) if item.population else 'N/A' }}</td>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <div style="width: 60px; height: 6px; background: #f1f5f9; border-radius: 3px; overflow: hidden;">
+                                    <div style="width: {{ item.score }}%; height: 100%; background: var(--accent);"></div>
+                                </div>
+                                <span style="font-weight: 800; font-size: 0.8rem;">{{ item.score }}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span style="font-weight: 700; color: var(--accent);">{{ item.rd if item.rd > 0 else 'N/A' }}{{ '%' if item.rd > 0 else '' }}</span>
+                        </td>
+                        <td>
+                            <span style="font-weight: 700; color: #6366f1;">{{ item.internet if item.internet > 0 else 'N/A' }}{{ '%' if item.internet > 0 else '' }}</span>
+                        </td>
+                        <td>
+                            <span style="color: {{ '#ef4444' if item.inflation > 5 else '#10b981' }}; font-weight: 700;">
+                                {{ item.inflation if item.inflation > 0 else 'N/A' }}{{ '%' if item.inflation > 0 else '' }}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="status-high">📈 +{{ item.forecast }}%</span>
+                        </td>
+                        <td>
+                            <a href="/country/{{ item.iso3 }}" style="color: var(--accent); font-weight: 700; text-decoration: none; font-size: 0.8rem;">DETAIL &rarr;</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="info-card" style="margin-top: 3rem; background: linear-gradient(to right, #eff6ff, #ffffff);">
+            <h3>💡 Metodologi Prediksi</h3>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">Model Machine Learning kami menggunakan algoritma regresi linier untuk memprediksi pertumbuhan ekonomi 5 tahun ke depan. Variabel yang digunakan mencakup <strong>Skor Maturitas Teknologi</strong> nasional dan <strong>Logaritma GDP</strong> terkini sebagai representasi skala ekonomi.</p>
+        </div>
+
+        <p style="text-align: center; font-size: 0.75rem; color: #94a3b8; margin-top: 2rem;">
+            Sumber Data: <a href="https://worldbank.org" target="_blank" style="color: #64748b;">World Bank Open Data</a>, 
+            <a href="https://restcountries.com" target="_blank" style="color: #64748b;">RestCountries API</a>. 
+            Data diupdate secara real-time melalui integrasi API Back-End.
+        </p>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 TeknoAtlas - Dashboard Analisis Strategis Global</p>
+        </div>
+    </footer>
+</body>
+</html>

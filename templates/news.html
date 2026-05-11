@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warta Teknologi - TeknoAtlas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="container nav-content">
+            <a href="/" class="logo">Tekno<span>Atlas</span></a>
+            <div class="nav-links">
+                <a href="/">Beranda</a>
+                <a href="/map">Peta Inovasi</a>
+                <a href="/news">Warta Tekno</a>
+                <a href="/analysis">Analisis</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="section-header">
+            <h2>Warta Teknologi Global</h2>
+            <p>Kumpulan tren dan berita inovasi terbaru dari seluruh dunia untuk mendukung keputusan strategis.</p>
+        </header>
+
+        <div class="news-list">
+            {% for n in news %}
+            <div class="news-card">
+                <div class="news-meta">
+                    <span class="news-source">{{ n.source }}</span>
+                    <span class="news-date">{{ n.date }}</span>
+                </div>
+                <h3>{{ n.title }}</h3>
+                <p>{{ n.summary }}</p>
+                <a href="{{ n.url }}" target="_blank" style="display: inline-block; margin-top: 1.5rem; color: var(--accent); font-weight: 800; text-decoration: none; font-size: 0.8rem;">BACA SELENGKAPNYA &rarr;</a>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="info-card" style="text-align: center; background: var(--primary); color: white;">
+            <h3 style="color: white; border-bottom-color: rgba(255,255,255,0.1);">Berlangganan Newsletter</h3>
+            <p style="color: #94a3b8; margin-bottom: 20px;">Dapatkan analisis mingguan langsung ke email Anda.</p>
+            <div style="display: flex; gap: 10px; justify-content: center; max-width: 500px; margin: 0 auto;">
+                <input type="email" placeholder="Email Anda..." style="flex: 1; padding: 12px; border-radius: 8px; border: none;">
+                <button style="background: var(--accent); color: white; border: none; padding: 0 24px; border-radius: 8px; font-weight: 800; cursor: pointer;">Daftar</button>
+            </div>
+        </div>
+        <p style="text-align: center; font-size: 0.75rem; color: #94a3b8; margin-top: 2rem;">
+            Sumber Warta: <a href="https://hn.algolia.com/api" target="_blank" style="color: #64748b;">Hacker News API</a>, 
+            <a href="https://dev.to/api" target="_blank" style="color: #64748b;">Dev.to API</a>, 
+            <a href="https://saurav.tech/NewsAPI/" target="_blank" style="color: #64748b;">NewsAPI Mirror</a>,
+            <a href="https://www.spaceflightnewsapi.net/" target="_blank" style="color: #64748b;">Spaceflight News API</a>.
+        </p>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 TeknoAtlas - Dashboard Analisis Strategis Global</p>
+        </div>
+    </footer>
+</body>
+</html>

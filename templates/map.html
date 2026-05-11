@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peta Inovasi Global - TeknoAtlas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        #map { height: 600px; border-radius: 24px; box-shadow: var(--shadow-lg); margin-bottom: 40px; border: 8px solid white; }
+        .leaflet-popup-content-wrapper { border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; }
+        .leaflet-popup-tip { display: none; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container nav-content">
+            <a href="/" class="logo">Tekno<span>Atlas</span></a>
+            <div class="nav-links">
+                <a href="/">Beranda</a>
+                <a href="/map">Peta Inovasi</a>
+                <a href="/news">Warta Tekno</a>
+                <a href="/analysis">Analisis</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="section-header">
+            <h2>Peta Hub Inovasi Dunia</h2>
+            <p>Visualisasi lokasi geografis pusat teknologi strategis global secara interaktif.</p>
+        </header>
+
+        <div id="map"></div>
+
+        <div class="info-card" style="background: #f8fafc; text-align: center;">
+            <p style="font-size: 0.9rem; color: var(--text-muted);">Gunakan mouse untuk bergeser dan scroll untuk memperbesar/memperkecil peta.</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 TeknoAtlas - Dashboard Analisis Strategis Global</p>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map', {
+            scrollWheelZoom: false
+        }).setView([20, 10], 2);
+        
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 20
+        }).addTo(map);
+
+        var hubs = {{ hubs | tojson }};
+        hubs.forEach(function(hub) {
+            L.marker([hub.lat, hub.lng]).addTo(map)
+                .bindPopup("<div style='padding: 5px;'><h3 style='margin: 0 0 5px 0; font-size: 1rem; color: var(--primary);'>" + hub.name + "</h3><p style='margin: 0; font-size: 0.8rem;'><b>Negara:</b> " + hub.country + "</p><p style='margin: 5px 0 0 0; font-size: 0.8rem; color: var(--accent); font-weight: 700;'>Fokus: " + hub.focus + "</p></div>");
+        });
+
+        map.on('click', function() {
+            if (map.scrollWheelZoom.enabled()) {
+                map.scrollWheelZoom.disable();
+            } else {
+                map.scrollWheelZoom.enable();
+            }
+        });
+    </script>
+</body>
+</html>

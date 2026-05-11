@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ country.name }} - Profil Teknologi Mendalam</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="container nav-content">
+            <a href="/" class="logo">Tekno<span>Atlas</span></a>
+            <div class="nav-links">
+                <a href="/">Beranda</a>
+                <a href="/map">Peta Inovasi</a>
+                <a href="/news">Warta Tekno</a>
+                <a href="/analysis">Analisis</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="detail-header">
+            <img src="{{ country.flag }}" alt="Flag" class="detail-flag">
+            <div>
+                <a href="/" style="text-decoration: none; color: var(--accent); font-weight: 700; font-size: 0.8rem; margin-bottom: 0.5rem; display: block;">&larr; KEMBALI KE BERANDA</a>
+                <h1>Profil Inovasi: {{ country.name }}</h1>
+                <p style="color: var(--text-muted);">{{ country.official_name }}</p>
+            </div>
+        </div>
+
+        <div class="grid-2-col">
+            <!-- Sidebar Statistik API -->
+            <aside class="api-sidebar">
+                <div class="info-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3 style="margin-bottom: 0;">Data Real-time</h3>
+                        <span style="font-size: 0.6rem; background: #f1f5f9; padding: 2px 8px; border-radius: 4px; color: #64748b;">SOURCE: WORLD BANK API</span>
+                    </div>
+                    <div class="stat-line">
+                        <label>Ibu Kota:</label>
+                        <span>{{ country.capital }}</span>
+                    </div>
+                    <div class="stat-line">
+                        <label>Mata Uang:</label>
+                        <span>{{ country.currency }}</span>
+                    </div>
+                    <div class="stat-line">
+                        <label>Populasi:</label>
+                        <span>{{ "{:,}".format(country.population) }}</span>
+                    </div>
+                    <div class="stat-line">
+                        <label>Wilayah:</label>
+                        <span>{{ country.region }}</span>
+                    </div>
+                    <div class="stat-line">
+                        <label>Skor Maturitas:</label>
+                        <span style="color: var(--accent); font-weight: 800;">{{ country.maturity }} / 100</span>
+                    </div>
+                    <div class="stat-line">
+                        <label>R&D Expenditure:</label>
+                        <span style="color: var(--accent);">{{ rd if rd > 0 else 'N/A' }}{{ '%' if rd > 0 else '' }}</span>
+                    </div>
+                    <div class="stat-line">
+                        <label>Internet Users:</label>
+                        <span style="color: #6366f1;">{{ internet if internet > 0 else 'N/A' }}{{ '%' if internet > 0 else '' }}</span>
+                    </div>
+                    <div class="stat-line">
+                        <label>Laju Inflasi:</label>
+                        <span style="color: {{ '#ef4444' if inflation > 5 else '#10b981' }};">{{ inflation if inflation > 0 else 'N/A' }}{{ '%' if inflation > 0 else '' }}</span>
+                    </div>
+                    <div class="stat-line highlight">
+                        <label>GDP (USD):</label>
+                        <span>${{ "{:,.0f}".format(gdp / 1e9) }} Miliar</span>
+                    </div>
+                    <div class="stat-line highlight" style="border-top: none; padding-top: 0; margin-top: 1rem; background: #f0fdf4; padding: 1rem; border-radius: 12px; border: 1px solid #dcfce7;">
+                        <label style="color: #166534;">Prediksi Pertumbuhan:</label>
+                        <span style="color: #15803d; font-size: 1.4rem;">+{{ forecast }}%</span>
+                    </div>
+                </div>
+
+                <div class="info-card" style="background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);">
+                    <h3>Indikator Sains & Teknologi</h3>
+                    <div class="stat-line">
+                        <label>Ekspor High-Tech:</label>
+                        <span style="color: var(--accent);">{{ hitech if hitech > 0 else 'N/A' }}{{ '%' if hitech > 0 else '' }}</span>
+                    </div>
+                    <div class="stat-line">
+                        <label>Jurnal Ilmiah:</label>
+                        <span>{{ "{:,}".format(journals) if journals > 0 else 'N/A' }}</span>
+                    </div>
+                    <p style="font-size: 0.7rem; color: var(--text-muted); margin-top: 10px; font-style: italic;">*Persentase ekspor manufaktur berteknologi tinggi.</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>Stabilitas Sosial-Ekonomi</h3>
+                    <div class="stat-line">
+                        <label>Angka Pengangguran:</label>
+                        <span style="color: {{ '#ef4444' if unemployment > 7 else '#10b981' }};">{{ unemployment if unemployment > 0 else 'N/A' }}{{ '%' if unemployment > 0 else '' }}</span>
+                    </div>
+                    <div class="stat-line">
+                        <label>Maturitas Digital:</label>
+                        <div style="width: 100px; height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden; align-self: center;">
+                            <div style="width: {{ internet }}%; height: 100%; background: #6366f1;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3>Pusat Inovasi (Hubs)</h3>
+                    <ul style="list-style: none;">
+                        {% for hub in country.innovation_hubs %}
+                        <li style="padding: 10px 0; border-bottom: 1px solid #f1f5f9; font-weight: 600; font-size: 0.9rem; color: var(--text-main);">
+                            📍 {{ hub }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="tech-main">
+                <section class="overview">
+                    <h2>Ikhtisar Nasional</h2>
+                    <p>{{ country.full_description }}</p>
+                </section>
+
+                <section class="tech-sectors">
+                    <h2>Sektor Teknologi Strategis</h2>
+                    <div class="sector-list">
+                        {% for key, sector in country.tech_sectors.items() %}
+                        <div class="sector-card">
+                            <div class="sector-head">
+                                <span class="badge-key">{{ key | upper }}</span>
+                                <h3>{{ sector.item }}</h3>
+                            </div>
+                            <div class="sector-body">
+                                <div style="display: flex; gap: 20px; margin-bottom: 15px;">
+                                    <p><strong>Perusahaan Utama:</strong> <br> {{ sector.company }}</p>
+                                    <p><strong>Status Proyek:</strong> <br> <span style="color: var(--accent); font-weight: 800;">{{ sector.status }}</span></p>
+                                </div>
+                                <p class="detail-p">{{ sector.detail }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 TeknoAtlas - Dashboard Analisis Strategis Global</p>
+        </div>
+    </footer>
+</body>
+</html>

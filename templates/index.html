@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeknoAtlas - Eksplorasi Ekosistem Inovasi Dunia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="container nav-content">
+            <a href="/" class="logo">Tekno<span>Atlas</span></a>
+            <div class="nav-links">
+                <a href="/">Beranda</a>
+                <a href="/map">Peta Inovasi</a>
+                <a href="/news">Warta Tekno</a>
+                <a href="/analysis">Analisis</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="hero">
+            <h1>Eksplorasi Ekosistem Inovasi Dunia</h1>
+            <p>Platform analisis strategis yang menggabungkan data ekonomi real-time dengan profil teknologi nasional untuk memprediksi masa depan ekonomi global.</p>
+        </header>
+
+        {% if error %}
+        <div class="info-card" style="border-left: 4px solid #ef4444; color: #ef4444;">
+            <p>{{ error }}</p>
+        </div>
+        {% endif %}
+
+        <section class="country-grid-home">
+            {% for c in countries %}
+            <div class="country-card">
+                <img src="{{ c.flags.png }}" alt="{{ c.name.common }}" class="card-flag">
+                <div class="card-body">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
+                        <span class="region-tag">{{ c.region }}</span>
+                        <span style="font-size: 0.7rem; font-weight: 800; color: #64748b;">SCORE: {{ c.maturity }}</span>
+                    </div>
+                    <h3>{{ c.name.common }}</h3>
+                    <p>{{ c.desc }}</p>
+                    <a href="/country/{{ c.cca3 }}" class="btn-detail">Lihat Profil Teknologi</a>
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 TeknoAtlas - Dashboard Analisis Strategis Global</p>
+        </div>
+    </footer>
+</body>
+</html>

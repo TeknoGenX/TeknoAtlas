@@ -1,0 +1,178 @@
+{
+    "IDN": {
+        "name": "Indonesia",
+        "maturity": 75,
+        "code": "IDR",
+        "desc": "Fokus hilirisasi dan energi terbarukan.",
+        "full_description": "Indonesia sedang melakukan transformasi ekonomi besar-besaran melalui hilirisasi industri dan pengembangan ekosistem energi terbarukan. Dengan populasi produktif yang besar, Indonesia memposisikan diri sebagai pemain kunci dalam rantai pasok global baterai kendaraan listrik.",
+        "innovation_hubs": ["Bandung Digital Valley", "Jakarta Tech Hub", "Solo Technopark", "IKN Digital Hub"],
+        "challenges": ["Kesenjangan infrastruktur digital antar pulau", "Keterbatasan talenta STEM tingkat lanjut", "Ketergantungan pada teknologi impor"],
+        "universities": ["Institut Teknologi Bandung (ITB)", "Universitas Indonesia (UI)", "Universitas Gadjah Mada (UGM)"],
+        "tech_sectors": {
+            "energy": {"item": "Hilirisasi Nikel & Baterai EV", "company": "Indonesia Battery Corporation (IBC)", "year": "2024", "status": "Strategis Nasional", "detail": "Pembangunan ekosistem baterai kendaraan listrik terintegrasi dari hulu ke hilir."},
+            "digital": {"item": "Ekosistem Fintech & Logistik", "company": "GoTo, J&T Express", "year": "2023", "status": "Mature", "detail": "Digitalisasi UMKM dan sistem logistik pintar berbasis AI untuk geografi kepulauan."},
+            "agritech": {"item": "Smart Farming 4.0", "company": "eFishery, Habibi Garden", "year": "2024", "status": "Accelerating", "detail": "Implementasi IoT dan otomatisasi untuk meningkatkan produktivitas perikanan dan pertanian."},
+            "satellite": {"item": "SATRIA-1 Connectivity", "company": "PSN", "year": "2023", "status": "Operational", "detail": "Satelit multifungsi terbesar di Asia untuk pemerataan akses internet di daerah 3T."}
+        }
+    },
+    "USA": {
+        "name": "United States",
+        "maturity": 98,
+        "code": "USD",
+        "desc": "Pemimpin AI dan komputasi kuantum.",
+        "full_description": "Amerika Serikat terus mendominasi lanskap teknologi global melalui inovasi di Silicon Valley. Fokus utama saat ini adalah pengembangan AI generatif, semikonduktor tingkat lanjut, dan eksplorasi ruang angkasa komersial.",
+        "innovation_hubs": ["Silicon Valley", "Austin Tech Ridge", "Boston Biotech Corridor", "Research Triangle Park"],
+        "challenges": ["Persaingan geopolitik teknologi yang ketat", "Keamanan siber infrastruktur kritis", "Polarisasi regulasi AI"],
+        "universities": ["MIT", "Stanford University", "Caltech", "UC Berkeley"],
+        "tech_sectors": {
+            "ai": {"item": "Generative AI & LLM", "company": "OpenAI, Microsoft, NVIDIA", "year": "2024", "status": "Global Leader", "detail": "Pengembangan model bahasa besar dan akselerator hardware untuk kecerdasan buatan universal."},
+            "space": {"item": "Starship & Artemis Program", "company": "SpaceX, Blue Origin, NASA", "year": "2024", "status": "Active Exploration", "detail": "Misi kembali ke bulan dan ambisi kolonisasi Mars dengan roket reusable."},
+            "quantum": {"item": "Quantum Computing", "company": "IBM, Google, IonQ", "year": "2025", "status": "Advanced R&D", "detail": "Pengembangan komputer kuantum yang mampu memecahkan masalah kompleks melampaui superkomputer klasik."},
+            "semiconductor": {"item": "Advanced Chip Design", "company": "Apple (M-Series), Intel, AMD", "year": "2024", "status": "Dominant", "detail": "Arsitektur chip 3nm dan chiplet untuk efisiensi daya ekstrim di perangkat mobile dan server."}
+        }
+    },
+    "CHN": {
+        "name": "China",
+        "maturity": 96,
+        "code": "CNY",
+        "desc": "Dominasi manufaktur teknologi dan EV.",
+        "full_description": "Tiongkok telah bertransformasi dari pusat manufaktur menjadi pusat inovasi teknologi global. Memimpin dalam infrastruktur 5G/6G, kendaraan listrik (EV), dan teknologi energi surya.",
+        "innovation_hubs": ["Shenzhen Innovation Zone", "Zhongguancun (Beijing)", "Shanghai Tech Park", "Hangzhou Alibaba Cloud Valley"],
+        "challenges": ["Pembatasan akses semikonduktor tingkat lanjut", "Penuaan populasi yang cepat", "Transisi menuju konsumsi domestik"],
+        "universities": ["Tsinghua University", "Peking University", "Fudan University", "Zhejiang University"],
+        "tech_sectors": {
+            "ev": {"item": "Electric Vehicles & Solid State Battery", "company": "BYD, NIO, CATL", "year": "2024", "status": "Market Dominant", "detail": "Kepemimpinan pasar EV global dan riset baterai generasi berikutnya dengan kepadatan energi tinggi."},
+            "telecom": {"item": "6G & Satellite Internet", "company": "Huawei, ZTE, China Satcom", "year": "2025", "status": "Leading Research", "detail": "Pengembangan standar 6G dan konstelasi satelit orbit rendah untuk cakupan global."},
+            "renewable": {"item": "Solar & Wind Technology", "company": "LONGi Solar, Goldwind", "year": "2024", "status": "Production Leader", "detail": "Manufaktur panel surya efisiensi tinggi dan turbin angin lepas pantai skala masif."},
+            "fintech": {"item": "Digital Yuan (e-CNY)", "company": "Ant Group, Tencent", "year": "2023", "status": "Full Implementation", "detail": "Implementasi mata uang digital bank sentral (CBDC) paling maju di dunia."}
+        }
+    },
+    "JPN": {
+        "name": "Japan",
+        "maturity": 95,
+        "code": "JPY",
+        "desc": "Pionir robotika dan Society 5.0.",
+        "full_description": "Jepang berfokus pada integrasi teknologi ke dalam kehidupan sosial melalui konsep Society 5.0. Keunggulan dalam robotika presisi, material tingkat lanjut, dan ekonomi hidrogen tetap menjadi fondasi utama.",
+        "innovation_hubs": ["Tsukuba Science City", "Tokyo Tech Hub", "Osaka Robotics Cluster", "Nagoya Automotive Center"],
+        "challenges": ["Budaya korporat yang kaku terhadap startup", "Kekurangan tenaga kerja ahli IT", "Lambatnya digitalisasi sektor publik"],
+        "universities": ["University of Tokyo", "Kyoto University", "Tokyo Institute of Technology"],
+        "tech_sectors": {
+            "robotics": {"item": "Humanoid & Collaborative Robots", "company": "Fanuc, Yaskawa, Honda (ASIMO Legacy)", "year": "2024", "status": "Innovation Leader", "detail": "Robotika canggih untuk menangani masalah kekurangan tenaga kerja akibat penuaan populasi."},
+            "energy": {"item": "Hydrogen Economy Infrastructure", "company": "Toyota, Iwatani", "year": "2024", "status": "Pioneer", "detail": "Membangun ekosistem transportasi dan pembangkit listrik berbasis hidrogen cair."},
+            "semiconductor": {"item": "Specialized Materials & Lithography", "company": "Tokyo Electron, JSR, Shin-Etsu", "year": "2024", "status": "Supply Chain Key", "detail": "Penguasaan bahan kimia dan peralatan fotolitografi esensial untuk pembuatan chip global."},
+            "healthcare": {"item": "Regenerative Medicine", "company": "Takeda, Fujifilm", "year": "2023", "status": "Advanced", "detail": "Pemanfaatan sel iPS untuk terapi medis dan regenerasi organ manusia."}
+        }
+    },
+    "DEU": {
+        "name": "Germany",
+        "maturity": 94,
+        "code": "EUR",
+        "desc": "Industri 4.0 dan otomasi tingkat tinggi.",
+        "full_description": "Jerman memimpin dunia dalam Industri 4.0, menggabungkan manufaktur tradisional dengan IoT dan big data. Fokus pada efisiensi energi dan keberlanjutan industri otomotif menjadi prioritas nasional.",
+        "innovation_hubs": ["Berlin Startup Scene", "Munich High-Tech Campus", "Stuttgart Automotive Valley", "Dresden Silicon Saxony"],
+        "challenges": ["Harga energi yang tinggi untuk industri", "Birokrasi yang kompleks", "Digitalisasi infrastruktur publik yang tertinggal"],
+        "universities": ["Technical University of Munich", "RWTH Aachen University", "TU Berlin"],
+        "tech_sectors": {
+            "industry": {"item": "Industrial IoT (IIoT)", "company": "Siemens, Bosch, SAP", "year": "2024", "status": "Global Standard", "detail": "Sistem operasi industri (MindSphere) untuk otomasi pabrik yang sepenuhnya digital dan cerdas."},
+            "auto": {"item": "Electric Mobility & Software-Defined Vehicles", "company": "VW Group, Mercedes-Benz, BMW", "year": "2024", "status": "Transforming", "detail": "Transisi masif industri otomotif dari mesin pembakaran internal ke kendaraan berbasis perangkat lunak."},
+            "biotech": {"item": "mRNA Technology", "company": "BioNTech, CureVac", "year": "2023", "status": "World Leader", "detail": "Inovasi terapi genetik dan vaksin berbasis mRNA untuk kanker dan penyakit menular."},
+            "energy": {"item": "Green Hydrogen Production", "company": "ThyssenKrupp, RWE", "year": "2024", "status": "Strategic Transition", "detail": "Dekarbonisasi industri berat melalui produksi hidrogen menggunakan energi angin lepas pantai."}
+        }
+    },
+    "KOR": {
+        "name": "South Korea",
+        "maturity": 97,
+        "code": "KRW",
+        "desc": "Raksasa semikonduktor dan digitalisasi masif.",
+        "full_description": "Korea Selatan adalah pemimpin dunia dalam pengeluaran R&D terhadap GDP. Dengan infrastruktur 5G tercepat dan dominasi di pasar memori chip, negara ini sedang bertransformasi menuju AI dan robotika humanoid.",
+        "innovation_hubs": ["Pangyo Techno Valley", "Seoul Digital Media City", "Daejeon Science District", "Incheon Smart City"],
+        "challenges": ["Dominasi konglomerat (Chaebol) yang menghambat startup kecil", "Ketegangan geopolitik regional", "Krisis demografi terparah di dunia"],
+        "universities": ["Seoul National University (SNU)", "KAIST", "POSTECH"],
+        "tech_sectors": {
+            "semiconductor": {"item": "HBM & Logic Chips", "company": "Samsung Electronics, SK Hynix", "year": "2024", "status": "Global Leader", "detail": "Pengembangan High Bandwidth Memory esensial untuk pemrosesan AI tingkat lanjut."},
+            "electronics": {"item": "OLED & Display Tech", "company": "LG Display, Samsung Display", "year": "2024", "status": "Dominant", "detail": "Inovasi layar lipat dan transparan untuk perangkat masa depan."},
+            "mobility": {"item": "Hydrogen & Electric Mobility", "company": "Hyundai, Kia", "year": "2024", "status": "Advanced", "detail": "Pengembangan sistem sel bahan bakar hidrogen untuk transportasi berat dan logistik."},
+            "robotics": {"item": "AI-Integrated Robotics", "company": "Rainbow Robotics (Samsung backed)", "year": "2024", "status": "Accelerating", "detail": "Implementasi robot kolaboratif di sektor manufaktur dan layanan."}
+        }
+    },
+    "GBR": {
+        "name": "United Kingdom",
+        "maturity": 93,
+        "code": "GBP",
+        "desc": "Pusat Fintech dan Deeptech Eropa.",
+        "full_description": "Inggris tetap menjadi hub utama bagi startup teknologi di Eropa, terutama dalam bidang keuangan (Fintech), bioteknologi, dan AI. Hubungan kuat antara universitas elit dan industri mendorong inovasi tingkat lanjut.",
+        "innovation_hubs": ["London Silicon Roundabout", "Cambridge Science Park", "Oxford Science Village", "Manchester Tech Hub"],
+        "challenges": ["Penyesuaian regulasi pasca-Brexit", "Biaya operasional yang tinggi di London", "Akses talenta internasional"],
+        "universities": ["University of Oxford", "University of Cambridge", "Imperial College London", "UCL"],
+        "tech_sectors": {
+            "fintech": {"item": "Open Banking & Digital Wallets", "company": "Revolut, Monzo, Wise", "year": "2024", "status": "Global Hub", "detail": "Revolusi layanan perbankan digital dan sistem pembayaran lintas batas yang efisien."},
+            "ai": {"item": "Deep Learning & AI Safety", "company": "Google DeepMind, Wayve", "year": "2024", "status": "Pioneer", "detail": "Riset fundamental AI dan pengembangan standar keamanan AI global."},
+            "biotech": {"item": "Genomics & Drug Discovery", "company": "AstraZeneca, Oxford Nanopore", "year": "2024", "status": "Advanced", "detail": "Pengurutan DNA portabel dan penemuan obat berbasis data genetik."},
+            "quantum": {"item": "Quantum Software", "company": "Quantinuum", "year": "2025", "status": "Leading", "detail": "Pengembangan sistem operasi dan algoritma untuk komputer kuantum generasi awal."}
+        }
+    },
+    "ISR": {
+        "name": "Israel",
+        "maturity": 92,
+        "code": "ILS",
+        "desc": "Negara Startup dengan fokus Cybersecurity.",
+        "full_description": "Dikenal sebagai 'Startup Nation', Israel memiliki kepadatan startup tertinggi di dunia per kapita. Inovasi didorong oleh kebutuhan pertahanan yang diadaptasi ke aplikasi komersial, terutama dalam keamanan siber dan agritech.",
+        "innovation_hubs": ["Silicon Wadi (Tel Aviv)", "Jerusalem High-Tech Park", "Haifa R&D Center", "Beersheba Cyber Hub"],
+        "challenges": ["Instabilitas keamanan regional", "Kelangkaan tenaga kerja akibat mobilisasi militer", "Ketimpangan ekonomi antara sektor teknologi dan tradisional"],
+        "universities": ["Technion - Israel Institute of Technology", "Tel Aviv University", "Hebrew University of Jerusalem"],
+        "tech_sectors": {
+            "cyber": {"item": "Advanced Threat Prevention", "company": "Check Point, Wiz, SentinelOne", "year": "2024", "status": "Global Leader", "detail": "Sistem pertahanan siber otomatis berbasis AI untuk melindungi infrastruktur awan global."},
+            "agritech": {"item": "Precision Agriculture & Desalination", "company": "Netafim, IDE Technologies", "year": "2024", "status": "World Pioneer", "detail": "Teknologi irigasi tetes dan pengolahan air laut untuk ketahanan pangan di daerah gersang."},
+            "chips": {"item": "AI Processor Design", "company": "Intel Israel (Mobileye), Hailo", "year": "2024", "status": "Innovation Hub", "detail": "Desain chip otonom dan pemrosesan AI edge dengan efisiensi energi tinggi."},
+            "medtech": {"item": "Digital Health & Imaging", "company": "Iterative Health", "year": "2023", "status": "Advanced", "detail": "Analisis citra medis menggunakan AI untuk diagnosis penyakit dalam yang lebih akurat."}
+        }
+    },
+    "SGP": {
+        "name": "Singapore",
+        "maturity": 91,
+        "code": "SGD",
+        "desc": "Smart City dan Hub Teknologi Asia Tenggara.",
+        "full_description": "Singapura memposisikan diri sebagai 'living lab' untuk teknologi masa depan. Dengan regulasi yang pro-bisnis dan inisiatif Smart Nation, negara ini menjadi pintu gerbang teknologi bagi pasar Asia Tenggara.",
+        "innovation_hubs": ["one-north", "Jurong Innovation District", "Punggol Digital District", "Changi Business Park"],
+        "challenges": ["Keterbatasan lahan dan sumber daya alam", "Ketergantungan pada talenta asing", "Biaya hidup yang sangat tinggi"],
+        "universities": ["National University of Singapore (NUS)", "Nanyang Technological University (NTU)", "SMU"],
+        "tech_sectors": {
+            "smartcity": {"item": "Autonomous Urban Logistics", "company": "ST Engineering", "year": "2024", "status": "Leading", "detail": "Implementasi kendaraan otonom untuk pengiriman barang dan pembersihan kota secara cerdas."},
+            "fintech": {"item": "Crypto & Blockchain Regulation", "company": "DBS (Digital Exchange), Grab (GXS)", "year": "2024", "status": "Regulated Hub", "detail": "Pembangunan ekosistem aset digital yang aman dan patuh pada regulasi keuangan internasional."},
+            "foodtech": {"item": "Lab-grown Meat & vertical farming", "company": "Eat Just (GOOD Meat hub)", "year": "2024", "status": "Pioneer", "detail": "Negara pertama yang melegalkan penjualan daging budidaya laboratorium untuk ketahanan pangan."},
+            "greentech": {"item": "Urban Cooling & Energy Storage", "company": "Sunseap", "year": "2024", "status": "Accelerating", "detail": "Integrasi panel surya terapung dan sistem pendinginan kota yang efisien energi."}
+        }
+    },
+    "IND": {
+        "name": "India",
+        "maturity": 82,
+        "code": "INR",
+        "desc": "Hub IT Global dan Inovasi Digital Publik.",
+        "full_description": "India sedang bertransformasi dari pusat outsourcing menjadi pusat inovasi produk. Dengan infrastruktur digital publik (India Stack) yang revolusioner, negara ini memimpin dalam pembayaran digital dan teknologi luar angkasa berbiaya rendah.",
+        "innovation_hubs": ["Bangalore (Silicon Valley of India)", "Hyderabad HITEC City", "Pune IT Hub", "Gurugram Startup Scene"],
+        "challenges": ["Infrastruktur fisik yang belum merata", "Birokrasi yang kompleks", "Kesenjangan keterampilan antara lulusan dan kebutuhan industri"],
+        "universities": ["IIT (Indian Institutes of Technology)", "IISc Bangalore", "BITS Pilani"],
+        "tech_sectors": {
+            "digital_pub": {"item": "UPI & Digital ID", "company": "NPCI", "year": "2024", "status": "World Leader", "detail": "Sistem pembayaran real-time paling sukses di dunia yang memproses miliaran transaksi per bulan."},
+            "space": {"item": "Low-cost Space Exploration", "company": "ISRO, Skyroot Aerospace", "year": "2023", "status": "Top Tier", "detail": "Misi bulan (Chandrayaan-3) dan peluncuran satelit komersial dengan efisiensi biaya yang tidak tertandingi."},
+            "it_services": {"item": "Cloud Transformation & AI Services", "company": "TCS, Infosys, Wipro", "year": "2024", "status": "Dominant", "detail": "Penyediaan layanan transformasi digital skala masif untuk perusahaan Fortune 500 global."},
+            "saas": {"item": "Global B2B Software", "company": "Zoho, Freshworks", "year": "2024", "status": "Rapid Growth", "detail": "Pengembangan perangkat lunak bisnis berbasis cloud yang bersaing di pasar global dengan harga kompetitif."}
+        }
+    },
+    "FRA": {
+        "name": "France",
+        "maturity": 90,
+        "code": "EUR",
+        "desc": "Pemimpin Aerospace dan AI Eropa.",
+        "full_description": "Melalui inisiatif 'La French Tech', Prancis telah membangkitkan ekosistem startup-nya secara signifikan. Fokus pada kedaulatan teknologi Eropa mendorong investasi besar dalam AI, energi nuklir generasi baru, dan dirgantara.",
+        "innovation_hubs": ["Station F (Paris)", "Toulouse Aerospace Valley", "Grenoble Nano-Tech Hub", "Sophia Antipolis"],
+        "challenges": ["Regulasi tenaga kerja yang kaku", "Pajak korporasi yang tinggi", "Dominasi bahasa Inggris di sektor teknologi global"],
+        "universities": ["Sorbonne University", "École Polytechnique", "PSL University"],
+        "tech_sectors": {
+            "aerospace": {"item": "Hydrogen Aircraft & Space Launchers", "company": "Airbus, ArianeGroup", "year": "2025", "status": "Global Leader", "detail": "Pengembangan pesawat komersial nol emisi berbasis hidrogen dan roket peluncur generasi baru."},
+            "ai": {"item": "Open Source LLM", "company": "Mistral AI", "year": "2024", "status": "Rising Star", "detail": "Pengembangan model bahasa besar (LLM) yang mampu bersaing dengan raksasa AS dalam efisiensi dan performa."},
+            "luxury_tech": {"item": "Sustainable Fashion Tech", "company": "LVMH Innovation Awardees", "year": "2024", "status": "Pioneer", "detail": "Integrasi teknologi blockchain dan material baru dalam industri fashion mewah."},
+            "energy": {"item": "SMR (Small Modular Reactors)", "company": "EDF, Nuward", "year": "2025", "status": "Advanced", "detail": "Inovasi reaktor nuklir skala kecil untuk dekarbonisasi industri dan energi stabil."}
+        }
+    }
+}
