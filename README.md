@@ -4,9 +4,9 @@
 - **Kelas:** Pemrograman Back-End
 - **Kelompok:** 5
 - **Anggota:**
-  1. [Nama Anggota 1]
-  2. [Nama Anggota 2]
-  3. [Nama Anggota 3]
+  1. Andi Liani
+  2. Nath
+  3. Ikbar 
 
 ## Tema Website
 **TeknoAtlas** adalah platform dashboard analisis teknologi global yang mengintegrasikan data ekonomi makro dan warta teknologi internasional secara *real-time*. Aplikasi ini tidak hanya menampilkan data mentah, tetapi juga melakukan **Analisis Prediktif** menggunakan Machine Learning di sisi Back-End sebelum menyajikannya kepada pengguna.
@@ -27,11 +27,11 @@ Sesuai dengan syarat tugas, aplikasi ini menggunakan library `requests` untuk me
 5.  **Peta Inovasi**: Visualisasi lokasi pusat teknologi dunia menggunakan Leaflet.js.
 
 ## Syarat Teknis (Checklist Tugas)
-- [x] **Framework**: Flask (Python)
-- [x] **Library API**: `requests`
-- [x] **Template Engine**: Jinja2 (HTML Template Flask) dengan Looping & Conditional.
-- [x] **Tampilan**: Menggunakan Card, Table, dan Navigasi Sederhana (User Friendly).
-- [x] **Data Dinamis**: Semua data diambil dari API dan diproses di server.
+- **Framework**: Flask (Python)
+- **Library API**: `requests`
+- **Template Engine**: Jinja2 (HTML Template Flask) dengan Looping & Conditional.
+- **Tampilan**: Menggunakan Card, Table, dan Navigasi Sederhana (User Friendly).
+- **Data Dinamis**: Semua data diambil dari API dan diproses di server.
 
 ## Cara Menjalankan
 1. Instalasi dependensi:
@@ -43,3 +43,5 @@ Sesuai dengan syarat tugas, aplikasi ini menggunakan library `requests` untuk me
    python app.py
    ```
 3. Akses di browser: `http://127.0.0.1:5000`
+
+> <p>lihat detail cara menjalankan <a href="./INSTALL.md">disini</a></p>
