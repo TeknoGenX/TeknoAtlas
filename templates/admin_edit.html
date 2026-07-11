@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubah Profil Teknologi - TeknoAtlas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="container nav-content">
+            <a href="/" class="logo">Tekno<span>Atlas</span></a>
+            <div class="nav-links">
+                <a href="/">Beranda</a>
+                <a href="/map">Peta Inovasi</a>
+                <a href="/news">Warta Tekno</a>
+                <a href="/analysis">Analisis</a>
+                {% if session.get('role') == 'admin' %}
+                    <a href="/admin/add" style="color: var(--accent-light);">+ Tambah Negara</a>
+                {% endif %}
+                <a href="/logout" style="color: #f87171;">Keluar</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="crud-container" style="animation: fadeIn 0.4s ease-out;">
+            <h2>Ubah Profil Teknologi: {{ country.name }} ({{ country.cca3 }})</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Perbarui data negara dan detail teknologi strategis di bawah ini.</p>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="alert-container">
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">
+                                <span>{{ message }}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <form action="/admin/edit/{{ country.cca3 }}" method="POST">
+                <div class="form-grid-2">
+                    <div class="form-group">
+                        <label for="cca3">Kode ISO3 Negara (Tidak Dapat Diubah)</label>
+                        <input type="text" id="cca3" name="cca3" class="form-input" value="{{ country.cca3 }}" disabled style="background: #e2e8f0; color: #64748b; font-weight: bold;">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Nama Negara*</label>
+                        <input type="text" id="name" name="name" class="form-input" value="{{ country.name }}" placeholder="Contoh: Singapura" required>
+                    </div>
+                </div>
+
+                <div class="form-grid-2">
+                    <div class="form-group">
+                        <label for="maturity">Skor Maturitas Teknologi (0 - 100)*</label>
+                        <input type="number" id="maturity" name="maturity" class="form-input" value="{{ country.maturity }}" placeholder="Contoh: 85" required min="0" max="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="code">Kode Mata Uang*</label>
+                        <input type="text" id="code" name="code" class="form-input" value="{{ country.code }}" placeholder="Contoh: SGD" required minlength="3" maxlength="3" style="text-transform: uppercase;">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="desc">Deskripsi Singkat (Beranda)*</label>
+                    <input type="text" id="desc" name="desc" class="form-input" value="{{ country.desc }}" placeholder="Contoh: Hub teknologi finansial." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="full_description">Deskripsi Lengkap (Detail)*</label>
+                    <textarea id="full_description" name="full_description" class="form-input form-text" placeholder="Tuliskan latar belakang teknologi secara detail..." required>{{ country.full_description }}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="innovation_hubs">Hub Inovasi (Pisahkan dengan koma)</label>
+                    <input type="text" id="innovation_hubs" name="innovation_hubs" class="form-input" value="{{ country.innovation_hubs | join(', ') }}" placeholder="Contoh: SG Innovate, One-North">
+                </div>
+
+                <div class="form-group">
+                    <label for="challenges">Tantangan Teknologi (Pisahkan dengan koma)</label>
+                    <input type="text" id="challenges" name="challenges" class="form-input" value="{{ country.challenges | join(', ') }}" placeholder="Contoh: Keterbatasan lahan">
+                </div>
+
+                <div class="form-group">
+                    <label for="universities">Universitas Utama (Pisahkan dengan koma)</label>
+                    <input type="text" id="universities" name="universities" class="form-input" value="{{ country.universities | join(', ') }}" placeholder="Contoh: NUS, NTU">
+                </div>
+
+                {% set first_key = (country.tech_sectors.keys() | list)[0] if country.tech_sectors else 'digital' %}
+                {% set first_sector = country.tech_sectors[first_key] if country.tech_sectors else {} %}
+
+                <h3 style="margin: 2.5rem 0 1rem 0; border-bottom: 2px solid var(--bg); padding-bottom: 0.5rem; font-weight: 800;">Sektor Teknologi Strategis (Sektor Utama)</h3>
+                
+                <div class="form-grid-2">
+                    <div class="form-group">
+                        <label for="sector_key">Kategori Sektor (Kunci JSON)</label>
+                        <input type="text" id="sector_key" name="sector_key" class="form-input" value="{{ first_key }}" placeholder="Contoh: digital" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sector_item">Nama Proyek / Teknologi</label>
+                        <input type="text" id="sector_item" name="sector_item" class="form-input" value="{{ first_sector.get('item', '') }}" placeholder="Contoh: Smart Nation" required>
+                    </div>
+                </div>
+
+                <div class="form-grid-2">
+                    <div class="form-group">
+                        <label for="sector_company">Perusahaan / Agensi Utama</label>
+                        <input type="text" id="sector_company" name="sector_company" class="form-input" value="{{ first_sector.get('company', '') }}" placeholder="Contoh: GovTech" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sector_status">Status Sektor</label>
+                        <input type="text" id="sector_status" name="sector_status" class="form-input" value="{{ first_sector.get('status', '') }}" placeholder="Contoh: Active" required>
+                    </div>
+                </div>
+
+                <div class="form-grid-2">
+                    <div class="form-group">
+                        <label for="sector_year">Tahun Peluncuran</label>
+                        <input type="number" id="sector_year" name="sector_year" class="form-input" value="{{ first_sector.get('year', '') }}" placeholder="Contoh: 2024" required min="1900" max="2100">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="sector_detail">Detail Proyek</label>
+                    <textarea id="sector_detail" name="sector_detail" class="form-input" placeholder="Deskripsikan fokus teknologi..." required style="min-height: 80px;">{{ first_sector.get('detail', '') }}</textarea>
+                </div>
+
+                <div class="crud-actions">
+                    <a href="/country/{{ country.cca3 }}" class="btn-crud btn-cancel">Batal</a>
+                    <button type="submit" class="btn-crud btn-save">Simpan Perubahan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 TeknoAtlas - Dashboard Analisis Strategis Global</p>
+        </div>
+    </footer>
+</body>
+</html>

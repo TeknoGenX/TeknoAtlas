@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar - TeknoAtlas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="container nav-content">
+            <a href="/" class="logo">Tekno<span>Atlas</span></a>
+            <div class="nav-links">
+                <a href="/login">Masuk</a>
+                <a href="/register">Daftar</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container auth-wrapper">
+        <div class="auth-card">
+            <h2>Daftar Akun Baru</h2>
+            <p class="subtitle">Buat akun untuk mulai memantau dan membandingkan ekosistem teknologi dunia.</p>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="alert-container">
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">
+                                <span>{{ message }}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <form action="/register" method="POST">
+                <div class="form-group">
+                    <label for="username">Nama Pengguna (Username)</label>
+                    <input type="text" id="username" name="username" class="form-input" placeholder="Min. 4 karakter alfanumerik" required minlength="4" maxlength="20">
+                </div>
+                <div class="form-group">
+                    <label for="password">Kata Sandi (Password)</label>
+                    <input type="password" id="password" name="password" class="form-input" placeholder="Min. 6 karakter (huruf & angka)" required minlength="6">
+                </div>
+                <div class="form-group">
+                    <label for="confirm_password">Konfirmasi Kata Sandi</label>
+                    <input type="password" id="confirm_password" name="confirm_password" class="form-input" placeholder="Ulangi kata sandi Anda" required>
+                </div>
+                <div class="form-group">
+                    <label for="role">Hak Akses (Role)</label>
+                    <select id="role" name="role" class="form-input">
+                        <option value="user">Pengguna Biasa (User)</option>
+                        <option value="admin">Administrator (Admin - Dapat CRUD)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-auth">Daftar</button>
+            </form>
+
+            <div class="auth-footer">
+                Sudah memiliki akun? <a href="/login">Masuk ke Sini</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 TeknoAtlas - Dashboard Analisis Strategis Global</p>
+        </div>
+    </footer>
+</body>
+</html>

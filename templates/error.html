@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kesalahan {{ error_code }} - TeknoAtlas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="container nav-content">
+            <a href="/" class="logo">Tekno<span>Atlas</span></a>
+            <div class="nav-links">
+                <a href="/">Beranda</a>
+                <a href="/map">Peta Inovasi</a>
+                <a href="/news">Warta Tekno</a>
+                <a href="/analysis">Analisis</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container error-wrapper">
+        <div class="error-code">{{ error_code }}</div>
+        <h2 class="error-title">{{ error_title }}</h2>
+        <p class="error-message">{{ error_message }}</p>
+        <div style="display: flex; gap: 15px; justify-content: center;">
+            <a href="/" class="btn-detail" style="padding: 0.75rem 2rem;">Kembali ke Beranda</a>
+            {% if error_code == 403 %}
+                <a href="/login" class="btn-detail" style="padding: 0.75rem 2rem; background: var(--accent);">Masuk Akun</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 TeknoAtlas - Dashboard Analisis Strategis Global</p>
+        </div>
+    </footer>
+</body>
+</html>

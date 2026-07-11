@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masuk - TeknoAtlas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="container nav-content">
+            <a href="/" class="logo">Tekno<span>Atlas</span></a>
+            <div class="nav-links">
+                <a href="/login">Masuk</a>
+                <a href="/register">Daftar</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container auth-wrapper">
+        <div class="auth-card">
+            <h2>Selamat Datang</h2>
+            <p class="subtitle">Silakan masuk ke akun Anda untuk mengeksplorasi ekosistem inovasi global.</p>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="alert-container">
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">
+                                <span>{{ message }}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <label for="username">Nama Pengguna (Username)</label>
+                    <input type="text" id="username" name="username" class="form-input" placeholder="Masukkan username Anda" required autofocus>
+                </div>
+                <div class="form-group">
+                    <label for="password">Kata Sandi (Password)</label>
+                    <input type="password" id="password" name="password" class="form-input" placeholder="Masukkan password Anda" required>
+                </div>
+                <button type="submit" class="btn-auth">Masuk</button>
+            </form>
+
+            <div class="auth-footer">
+                Belum punya akun? <a href="/register">Daftar Sekarang</a>
+            </div>
+            
+            <div style="margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1rem; font-size: 0.8rem; color: var(--text-muted); text-align: center;">
+                <p><strong>Akun Demo Cepat:</strong></p>
+                <p>User Biasa: <code>user</code> / <code>user123</code></p>
+                <p>Administrator: <code>admin</code> / <code>admin123</code></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 TeknoAtlas - Dashboard Analisis Strategis Global</p>
+        </div>
+    </footer>
+</body>
+</html>

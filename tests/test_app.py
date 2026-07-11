@@ -82,3 +82,11 @@ class TestRoutes:
     def test_country_detail_404(self, client):
         response = client.get('/country/XYZ')
         assert response.status_code == 404
+
+    def test_country_detail_lowercase(self, client):
+        from app import cache
+        with flask_app.app_context():
+            cache.clear()
+        response = client.get('/country/idn')
+        assert response.status_code == 200
+        assert b"Indonesia" in response.data
