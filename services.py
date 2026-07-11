@@ -8,7 +8,7 @@ class DataNexus:
     def __init__(self, tech_database):
         self.tech_database = tech_database
         self.endpoints = {
-            "countries": "https://restcountries.com/v3.1/all?fields=name,flags,population,cca3,area,currencies",
+            "countries": "https://www.apicountries.com/countries",
             "worldbank": "https://api.worldbank.org/v2/country/{iso3}/indicator/{indicator}?format=json&mrv=1"
         }
 
@@ -21,12 +21,54 @@ class DataNexus:
             logger.error(f"API Request Error for {url}: {e}")
             return None
 
+    def _normalize_country(self, c):
+        if not c or not isinstance(c, dict):
+            return c
+        
+        normalized = c.copy()
+        
+        # 1. Map alpha3Code to cca3
+        if 'alpha3Code' in c and 'cca3' not in normalized:
+            normalized['cca3'] = c['alpha3Code']
+            
+        # 2. Map name string to name dictionary
+        if 'name' in c and isinstance(c['name'], str):
+            normalized['name'] = {
+                'common': c['name'],
+                'official': c.get('nativeName') or c['name']
+            }
+            
+        # 3. Map currencies list to currencies dictionary
+        if 'currencies' in c and isinstance(c['currencies'], list):
+            curr_dict = {}
+            for curr in c['currencies']:
+                code = curr.get('code')
+                if code:
+                    curr_dict[code] = {
+                        'name': curr.get('name', 'N/A'),
+                        'symbol': curr.get('symbol', '')
+                    }
+            normalized['currencies'] = curr_dict
+            
+        # 4. Map capital string to list of strings
+        if 'capital' in c and isinstance(c['capital'], str):
+            normalized['capital'] = [c['capital']]
+            
+        return normalized
+
     def get_countries(self):
         """Ambil daftar negara dari API RestCountries."""
         raw = self.fetch_api(self.endpoints["countries"])
         if not raw: return []
+        
+        # Normalize and filter
+        normalized_list = []
         target = self.tech_database.keys()
-        return [c for c in raw if c.get('cca3') in target]
+        for c in raw:
+            norm_c = self._normalize_country(c)
+            if norm_c and norm_c.get('cca3') in target:
+                normalized_list.append(norm_c)
+        return normalized_list
 
     def get_indicator(self, iso3, indicator):
         """Ambil data indikator spesifik dari World Bank."""
@@ -155,12 +197,15 @@ class DataNexus:
 
     def get_country_detail(self, iso3):
         """Ambil detail negara dari database internal dan gabungkan dengan data bendera serta ekonomi."""
+        iso3 = iso3.upper()
         if iso3 not in self.tech_database:
             return None
             
         # Ambil data dasar dari API RestCountries
-        url = f"https://restcountries.com/v3.1/alpha/{iso3}?fields=name,flags,population,region,subregion,capital,currencies"
+        url = f"https://www.apicountries.com/alpha/{iso3}"
         raw = self.fetch_api(url)
+        if raw:
+            raw = self._normalize_country(raw)
         
         detail = self.tech_database[iso3].copy()
         if raw:

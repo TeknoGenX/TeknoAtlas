@@ -11,11 +11,23 @@
     <nav>
         <div class="container nav-content">
             <a href="/" class="logo">Tekno<span>Atlas</span></a>
-            <div class="nav-links">
-                <a href="/">Beranda</a>
-                <a href="/map">Peta Inovasi</a>
-                <a href="/news">Warta Tekno</a>
-                <a href="/analysis">Analisis</a>
+            <div class="nav-links" style="display: flex; align-items: center; gap: 1.25rem;">
+                {% if session.get('user_id') %}
+                    <a href="/">Beranda</a>
+                    <a href="/map">Peta Inovasi</a>
+                    <a href="/news">Warta Tekno</a>
+                    <a href="/analysis">Analisis</a>
+                    {% if session.get('role') == 'admin' %}
+                        <a href="/admin/add" style="color: var(--accent-light); font-weight: 800;">+ Tambah</a>
+                    {% endif %}
+                    <span style="color: #cbd5e1; font-size: 0.85rem; border-left: 1px solid #475569; padding-left: 1rem; margin-left: 0.5rem;">
+                        👤 {{ session.get('username') }} ({{ session.get('role') | upper }})
+                    </span>
+                    <a href="/logout" style="color: #f87171;">Keluar</a>
+                {% else %}
+                    <a href="/login">Masuk</a>
+                    <a href="/register" class="btn-detail" style="padding: 0.5rem 1rem; background: var(--accent); color: white; display: inline-block;">Daftar</a>
+                {% endif %}
             </div>
         </div>
     </nav>
@@ -26,16 +38,28 @@
             <p>Platform analisis strategis yang menggabungkan data ekonomi real-time dengan profil teknologi nasional untuk memprediksi masa depan ekonomi global.</p>
         </header>
 
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="alert-container">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            <span>{{ message }}</span>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
         {% if error %}
-        <div class="info-card" style="border-left: 4px solid #ef4444; color: #ef4444;">
-            <p>{{ error }}</p>
+        <div class="alert alert-danger">
+            <span>{{ error }}</span>
         </div>
         {% endif %}
 
         <section class="country-grid-home">
             {% for c in countries %}
             <div class="country-card">
-                <img src="{{ c.flags.png }}" alt="{{ c.name.common }}" class="card-flag">
+                <img src="{{ c.flags.png if c.flags and c.flags.png else 'https://flagcdn.com/w320/' + c.cca3.lower() + '.png' }}" alt="{{ c.name.common }}" class="card-flag" onerror="this.src='https://placehold.co/600x400?text=Flag+Not+Found'">
                 <div class="card-body">
                     <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
                         <span class="region-tag">{{ c.region }}</span>
@@ -43,7 +67,14 @@
                     </div>
                     <h3>{{ c.name.common }}</h3>
                     <p>{{ c.desc }}</p>
-                    <a href="/country/{{ c.cca3 }}" class="btn-detail">Lihat Profil Teknologi</a>
+                    
+                    <div style="display: flex; gap: 8px;">
+                        <a href="/country/{{ c.cca3 }}" class="btn-detail" style="flex: 1;">Lihat Profil Teknologi</a>
+                        {% if session.get('role') == 'admin' %}
+                            <a href="/admin/edit/{{ c.cca3 }}" class="btn-detail" style="background: var(--accent); flex: 0 0 50px; display: flex; align-items: center; justify-content: center; padding: 0;" title="Ubah Profil">📝</a>
+                            <a href="/admin/delete/{{ c.cca3 }}" class="btn-detail" style="background: #ef4444; flex: 0 0 50px; display: flex; align-items: center; justify-content: center; padding: 0;" title="Hapus Profil" onclick="return confirm('Apakah Anda yakin ingin menghapus data negara {{ c.name.common }}?')">🗑️</a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
             {% endfor %}

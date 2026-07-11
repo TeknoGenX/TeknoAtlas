@@ -11,11 +11,23 @@
     <nav>
         <div class="container nav-content">
             <a href="/" class="logo">Tekno<span>Atlas</span></a>
-            <div class="nav-links">
-                <a href="/">Beranda</a>
-                <a href="/map">Peta Inovasi</a>
-                <a href="/news">Warta Tekno</a>
-                <a href="/analysis">Analisis</a>
+            <div class="nav-links" style="display: flex; align-items: center; gap: 1.25rem;">
+                {% if session.get('user_id') %}
+                    <a href="/">Beranda</a>
+                    <a href="/map">Peta Inovasi</a>
+                    <a href="/news">Warta Tekno</a>
+                    <a href="/analysis">Analisis</a>
+                    {% if session.get('role') == 'admin' %}
+                        <a href="/admin/add" style="color: var(--accent-light); font-weight: 800;">+ Tambah</a>
+                    {% endif %}
+                    <span style="color: #cbd5e1; font-size: 0.85rem; border-left: 1px solid #475569; padding-left: 1rem; margin-left: 0.5rem;">
+                        👤 {{ session.get('username') }} ({{ session.get('role') | upper }})
+                    </span>
+                    <a href="/logout" style="color: #f87171;">Keluar</a>
+                {% else %}
+                    <a href="/login">Masuk</a>
+                    <a href="/register" class="btn-detail" style="padding: 0.5rem 1rem; background: var(--accent); color: white; display: inline-block;">Daftar</a>
+                {% endif %}
             </div>
         </div>
     </nav>
@@ -33,7 +45,9 @@
                         <th>Negara</th>
                         <th>Total GDP (USD)</th>
                         <th>Populasi</th>
+                        <th>Maturitas</th>
                         <th>R&D (% GDP)</th>
+                        <th>Internet (%)</th>
                         <th>Inflasi (%)</th>
                         <th>Prediksi (ML)</th>
                         <th>Aksi</th>

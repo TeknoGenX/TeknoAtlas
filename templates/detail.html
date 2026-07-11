@@ -11,16 +11,40 @@
     <nav>
         <div class="container nav-content">
             <a href="/" class="logo">Tekno<span>Atlas</span></a>
-            <div class="nav-links">
-                <a href="/">Beranda</a>
-                <a href="/map">Peta Inovasi</a>
-                <a href="/news">Warta Tekno</a>
-                <a href="/analysis">Analisis</a>
+            <div class="nav-links" style="display: flex; align-items: center; gap: 1.25rem;">
+                {% if session.get('user_id') %}
+                    <a href="/">Beranda</a>
+                    <a href="/map">Peta Inovasi</a>
+                    <a href="/news">Warta Tekno</a>
+                    <a href="/analysis">Analisis</a>
+                    {% if session.get('role') == 'admin' %}
+                        <a href="/admin/add" style="color: var(--accent-light); font-weight: 800;">+ Tambah</a>
+                    {% endif %}
+                    <span style="color: #cbd5e1; font-size: 0.85rem; border-left: 1px solid #475569; padding-left: 1rem; margin-left: 0.5rem;">
+                        👤 {{ session.get('username') }} ({{ session.get('role') | upper }})
+                    </span>
+                    <a href="/logout" style="color: #f87171;">Keluar</a>
+                {% else %}
+                    <a href="/login">Masuk</a>
+                    <a href="/register" class="btn-detail" style="padding: 0.5rem 1rem; background: var(--accent); color: white; display: inline-block;">Daftar</a>
+                {% endif %}
             </div>
         </div>
     </nav>
 
     <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="alert-container" style="margin-top: 1.5rem;">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            <span>{{ message }}</span>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
         <div class="detail-header">
             <img src="{{ country.flag }}" alt="Flag" class="detail-flag">
             <div>
@@ -78,6 +102,13 @@
                         <label style="color: #166534;">Prediksi Pertumbuhan:</label>
                         <span style="color: #15803d; font-size: 1.4rem;">+{{ forecast }}%</span>
                     </div>
+                    
+                    {% if session.get('role') == 'admin' %}
+                    <div style="margin-top: 1.5rem; display: flex; gap: 10px;">
+                        <a href="/admin/edit/{{ country.cca3 }}" class="btn-detail" style="background: var(--accent); flex: 1; padding: 0.75rem 0.25rem;">📝 Edit Profil</a>
+                        <a href="/admin/delete/{{ country.cca3 }}" class="btn-detail" style="background: #ef4444; flex: 1; padding: 0.75rem 0.25rem;" onclick="return confirm('Apakah Anda yakin ingin menghapus data negara ini?')">🗑️ Hapus</a>
+                    </div>
+                    {% endif %}
                 </div>
 
                 <div class="info-card" style="background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);">
