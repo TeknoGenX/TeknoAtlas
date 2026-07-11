@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "teknoatlas"
+version = "1.0.0"
+description = "TeknoAtlas - Eksplorasi Ekosistem Inovasi Dunia"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "Flask>=2.0.0",
+    "requests>=2.25.0",
+    "scikit-learn>=1.0.0",
+    "numpy>=1.20.0",
+    "joblib>=1.0.0",
+    "Flask-Caching>=1.10.0"
+]
+authors = [
+    { name="TeknoGenX", email="teknogenx@gmail.com" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Framework :: Flask",
+    "Operating System :: OS Independent",
+]
+
+[tool.setuptools]
+py-modules = ["app", "services", "database", "ml_engine"]
+
+[tool.setuptools.package-data]
+"*" = ["static/*", "templates/*", "data/*"]
