@@ -72,8 +72,9 @@
                     </div>
                     <div class="stat-line">
                         <label>Populasi:</label>
-                        <span>{{ "{:,}".format(country.population) }}</span>
-                    </div>
+                        {% set population = country.population | default(0, true) | int %}
+                        <span>{{ "{:,}".format(population) }}</span>
+                      </div>
                     <div class="stat-line">
                         <label>Wilayah:</label>
                         <span>{{ country.region }}</span>

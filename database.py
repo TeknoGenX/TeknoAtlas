@@ -138,26 +138,73 @@ def get_country(cca3):
         }
     return None
 
-def insert_country(cca3, name, maturity, code, desc, full_description, hubs, challenges, universities, sectors):
+def insert_country(
+    cca3,
+    name,
+    maturity,
+    code,
+    desc,
+    full_description,
+    hubs,
+    challenges,
+    universities,
+    sectors
+):
     conn = get_db_connection()
     cursor = conn.cursor()
+
     try:
+        cca3 = cca3.strip().upper()
+        name = name.strip()
+        code = code.strip().upper()
+        maturity = int(maturity)
+
+        # Cek apakah kode negara sudah digunakan
+        cursor.execute(
+            "SELECT cca3 FROM countries WHERE cca3 = ?",
+            (cca3,)
+        )
+
+        if cursor.fetchone():
+            return False, f"Negara dengan kode ISO3 {cca3} sudah ada."
+
         cursor.execute('''
             INSERT INTO countries (
-                cca3, name, maturity, code, desc, full_description, 
-                innovation_hubs, challenges, universities, tech_sectors
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                cca3,
+                name,
+                maturity,
+                code,
+                "desc",
+                full_description,
+                innovation_hubs,
+                challenges,
+                universities,
+                tech_sectors
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ''', (
-            cca3.upper(), name, maturity, code, desc, full_description,
-            json.dumps(hubs), json.dumps(challenges), json.dumps(universities), json.dumps(sectors)
+            cca3,
+            name,
+            maturity,
+            code,
+            desc,
+            full_description,
+            json.dumps(hubs or [], ensure_ascii=False),
+            json.dumps(challenges or [], ensure_ascii=False),
+            json.dumps(universities or [], ensure_ascii=False),
+            json.dumps(sectors or {}, ensure_ascii=False)
         ))
+
         conn.commit()
-        return True
-    except sqlite3.IntegrityError:
-        return False
+        return True, None
+
+    except (sqlite3.Error, TypeError, ValueError) as error:
+        conn.rollback()
+        print(f"[DB] Gagal menambahkan negara: {error}")
+        return False, str(error)
+
     finally:
         conn.close()
-
 def update_country(cca3, name, maturity, code, desc, full_description, hubs, challenges, universities, sectors):
     conn = get_db_connection()
     cursor = conn.cursor()
